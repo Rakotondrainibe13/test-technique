@@ -1,0 +1,7 @@
+Django>=4.2,<6.0
+djangorestframework>=3.14,<4.0
+gunicorn
+psycopg2-binary
+django-filter
+djangorestframework-simplejwt>=5.5.1
+django-redis>=5.4.0
