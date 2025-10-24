@@ -37,9 +37,16 @@ class ArticlesAPITest(APITestCase):
         logger.info("Setup complete: created users -> admin=%s, editor=%s, reader=%s", self.admin.username, self.editor.username, self.reader.username)
 
     def test_userprofile_created_signal(self):
-        u = User.objects.create_user(username="tmpuser", password="tmp")
-        self.assertTrue(hasattr(u, "profile"))
-        self.assertIsInstance(u.profile, UserProfile)
+        test_name = 'test_userprofile_created_signal'
+        logger.info(f"START {test_name}")
+        try:
+            u = User.objects.create_user(username="tmpuser", password="tmp")
+            self.assertTrue(hasattr(u, "profile"))
+            self.assertIsInstance(u.profile, UserProfile)
+            logger.info(f"END {test_name} OK")
+        except Exception as e:
+            logger.error(f"END {test_name} FAIL: {e}")
+            raise
 
     def test_admin_can_create_article(self):
         test_name = 'test_admin_can_create_article'
