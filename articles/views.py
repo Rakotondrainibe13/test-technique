@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .permissions import ArticlePermission
 from django.core.cache import cache
 from django.conf import settings
+from rest_framework.response import Response
 
 class ArticleListCreateView(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-created_at')
@@ -19,7 +20,8 @@ class ArticleListCreateView(generics.ListCreateAPIView):
         if data is not None:
             return Response(data)
         response = super().list(request, *args, **kwargs)
-        cache.set(cache_key, response.data, timeout=60)  # 1 minute
+        # Cache TimeOut 1 minute for dynamic data
+        cache.set(cache_key, response.data, timeout=60)
         return response
 
     def get_serializer_context(self):
