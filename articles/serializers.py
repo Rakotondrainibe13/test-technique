@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Article
 
+# Serializer article, l'auteur est automatiquement assigné à l'utilisateur connecté
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article

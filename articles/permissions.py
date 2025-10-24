@@ -12,6 +12,7 @@ class IsReader(permissions.BasePermission):
     def has_permission(self, request, view):
         return hasattr(request.user, 'profile') and request.user.profile.role == 'reader'
 
+# Permission personnalisée selon le rôle utilisateur (Admin, Editor, Reader)
 class ArticlePermission(permissions.BasePermission):
     """
     Admin: CRUD sur tous les articles

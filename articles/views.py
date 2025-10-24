@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.conf import settings
 from rest_framework.response import Response
 
+# View Articles avec caching Redis pour la liste des articles (1 min)
 class ArticleListCreateView(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-created_at')
     serializer_class = ArticleSerializer
@@ -14,13 +15,14 @@ class ArticleListCreateView(generics.ListCreateAPIView):
     filterset_fields = ['status']
     permission_classes = [ArticlePermission]
 
+    #Surcharge la méthode list pour implémenter le caching Redis
     def list(self, request, *args, **kwargs):
         cache_key = f"articles_list:{request.query_params.get('status', 'all')}:{request.query_params.get('page', 1)}"
         data = cache.get(cache_key)
         if data is not None:
             return Response(data)
         response = super().list(request, *args, **kwargs)
-        # Cache TimeOut 1 minute for dynamic data
+        # Cache Timeout 1 minute for dynamic data
         cache.set(cache_key, response.data, timeout=60)
         return response
 
