@@ -86,3 +86,15 @@ class ArticlesAPITest(APITestCase):
             logger.error(f"END {test_name} FAIL: {e}")
             raise
 
+    def test_reader_cannot_create_article(self):
+        test_name = 'test_reader_cannot_create_article'
+        logger.info(f"START {test_name}")
+        try:
+            data = {"title": "Reader Article", "content": "nope", "status": "draft"}
+            resp = self.reader_client.post(self.list_url, data, format="json")
+            logger.info("Reader create attempt status: %s", resp.status_code)
+            self.assertIn(resp.status_code, (status.HTTP_403_FORBIDDEN, status.HTTP_401_UNAUTHORIZED))
+            logger.info(f"END {test_name} OK")
+        except Exception as e:
+            logger.error(f"END {test_name} FAIL: {e}")
+            raise
