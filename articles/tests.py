@@ -98,3 +98,29 @@ class ArticlesAPITest(APITestCase):
         except Exception as e:
             logger.error(f"END {test_name} FAIL: {e}")
             raise
+
+    def test_list_pagination_returns_10_per_page(self):
+        test_name = 'test_list_pagination_returns_10_per_page'
+        logger.info(f"START {test_name}")
+        try:
+            for i in range(12):
+                Article.objects.create(title=f"T{i}", content="c", status="published", author=self.admin)
+
+            resp = self.admin_client.get(self.list_url)
+            logger.info("List page 1 status: %s", resp.status_code)
+            self.assertEqual(resp.status_code, status.HTTP_200_OK)
+            results = resp.data.get("results", resp.data)
+            logger.info("Items on page 1: %s", len(results))
+            self.assertEqual(len(results), 10)
+
+            resp2 = self.admin_client.get(self.list_url + "?page=2")
+            logger.info("List page 2 status: %s", resp2.status_code)
+            self.assertEqual(resp2.status_code, status.HTTP_200_OK)
+            results2 = resp2.data.get("results", resp2.data)
+            logger.info("Items on page 2: %s", len(results2))
+            self.assertEqual(len(results2), 2)
+
+            logger.info(f"END {test_name} OK")
+        except Exception as e:
+            logger.error(f"END {test_name} FAIL: {e}")
+            raise
