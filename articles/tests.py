@@ -124,3 +124,26 @@ class ArticlesAPITest(APITestCase):
         except Exception as e:
             logger.error(f"END {test_name} FAIL: {e}")
             raise
+
+    def test_filter_by_status_published(self):
+        test_name = 'test_filter_by_status_published'
+        logger.info(f"START {test_name}")
+        try:
+            Article.objects.create(title="A1", content="c", status="draft", author=self.admin)
+            Article.objects.create(title="A2", content="c", status="published", author=self.admin)
+            Article.objects.create(title="A3", content="c", status="published", author=self.admin)
+
+            resp = self.admin_client.get(self.list_url + "?status=published")
+            logger.info("Filter response status: %s", resp.status_code)
+            self.assertEqual(resp.status_code, status.HTTP_200_OK)
+            results = resp.data.get("results", resp.data)
+            for item in results:
+                if isinstance(item, dict):
+                    self.assertEqual(item.get("status"), "published")
+                else:
+                    self.assertEqual(item.status, "published")
+
+            logger.info(f"END {test_name} OK")
+        except Exception as e:
+            logger.error(f"END {test_name} FAIL: {e}")
+            raise
