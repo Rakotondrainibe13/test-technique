@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "b1de06b3-3196-4f68-b1d3-0a6245a884ca",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49227325",
+		"_collection_link": "https://sambatrarakotondrainibe-750639.postman.co/workspace/Sambatra-Mario-Rakotondrainibe'~fb8a83ba-1e25-45c6-8c77-28f385a0f2f0/collection/49227325-b1de06b3-3196-4f68-b1d3-0a6245a884ca?action=share&source=collection_link&creator=49227325"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjIwMDYzLCJpYXQiOjE3NjEyMTgyNjMsImp0aSI6IjUyZjlmYzhkM2ZjYzRiNGI4OWRhYTk1M2JkYTU1ODQxIiwidXNlcl9pZCI6IjEifQ.5KEnHDsBhg5tPjxH2BEjMg5tlAyE2F85p7gMJ_8ciuY"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/articles/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjIwMDYzLCJpYXQiOjE3NjEyMTgyNjMsImp0aSI6IjUyZjlmYzhkM2ZjYzRiNGI4OWRhYTk1M2JkYTU1ODQxIiwidXNlcl9pZCI6IjEifQ.5KEnHDsBhg5tPjxH2BEjMg5tlAyE2F85p7gMJ_8ciuY"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"mario\",\n    \"password\": \"mario@gmail.com\",\n    \"email\": \"mario@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/articles/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

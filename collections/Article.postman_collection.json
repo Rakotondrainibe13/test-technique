@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "fbef5de0-7518-40a8-b55b-c239c02a3731",
+		"name": "Article",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49227325",
+		"_collection_link": "https://sambatrarakotondrainibe-750639.postman.co/workspace/Sambatra-Mario-Rakotondrainibe'~fb8a83ba-1e25-45c6-8c77-28f385a0f2f0/collection/49227325-fbef5de0-7518-40a8-b55b-c239c02a3731?action=share&source=collection_link&creator=49227325"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"admin\", \"password\": \"adminpass\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create artcile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjIwMDYzLCJpYXQiOjE3NjEyMTgyNjMsImp0aSI6IjUyZjlmYzhkM2ZjYzRiNGI4OWRhYTk1M2JkYTU1ODQxIiwidXNlcl9pZCI6IjEifQ.5KEnHDsBhg5tPjxH2BEjMg5tlAyE2F85p7gMJ_8ciuY"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Macbook pro 1\",\n    \"content\": \"M1\",\n    \"status\": \"draft\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/articles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Articles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjg5NTM0LCJpYXQiOjE3NjEyODc3MzQsImp0aSI6ImI0MGU5ZjIxZWM0NjRlYjA4MDNkYjQyZTA5ZWYyNmYzIiwidXNlcl9pZCI6IjEifQ.kXxodGA85HXtC4MwkTL_veskSdkECeydVZFvnVOsbAk"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/articles?status=published&page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "published"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Article",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjIwMDYzLCJpYXQiOjE3NjEyMTgyNjMsImp0aSI6IjUyZjlmYzhkM2ZjYzRiNGI4OWRhYTk1M2JkYTU1ODQxIiwidXNlcl9pZCI6IjEifQ.5KEnHDsBhg5tPjxH2BEjMg5tlAyE2F85p7gMJ_8ciuY"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"TODO\",\n    \"content\": \"Nouveau contenu\",\n    \"status\": \"published\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/articles/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Article",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMjIwMDYzLCJpYXQiOjE3NjEyMTgyNjMsImp0aSI6IjUyZjlmYzhkM2ZjYzRiNGI4OWRhYTk1M2JkYTU1ODQxIiwidXNlcl9pZCI6IjEifQ.5KEnHDsBhg5tPjxH2BEjMg5tlAyE2F85p7gMJ_8ciuY"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/articles/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
